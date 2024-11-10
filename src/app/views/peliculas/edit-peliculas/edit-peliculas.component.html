@@ -1,0 +1,68 @@
+<div class="container mt-3 ml-5" style="width: 100vw; height: 100vh;">
+    <div class="card">
+        <div class="card-header">
+            Actualización de Películas
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="actualizar_pelicula()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Título</label>
+                            <input type="text" class="form-control" #titulo name="titulo" [(ngModel)]="cuadroTitulo">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Género</label>
+                            <input type="text" class="form-control" #genero name="genero" [(ngModel)]="cuadroGenero">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Año de estreno</label>
+                            <input type="number" class="form-control" #anio name="anio" [(ngModel)]="cuadroAnio">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Director</label>
+                            <input type="text" class="form-control" #director name="director" [(ngModel)]="cuadroDirector">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Duración (En minutos)</label>
+                            <input type="number" class="form-control" #duracion name="duracion" [(ngModel)]="cuadroDuracion">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Clasificación</label>
+                            <input type="text" class="form-control" #clasificacion name="clasificacion" [(ngModel)]="cuadroClasificacion">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Sinopsis</label>
+                            <input type="text" class="form-control" #sinopsis name="sinopsis" [(ngModel)]="cuadroSinopsis">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-success btn-block mb-2">
+                            <i class="fa-solid fa-floppy-disk"></i> Actualizar Película
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<nav class="sidebar sidebar-offcanvas">
+  <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+    <a class="sidebar-brand brand-logo" href="https://www.netflix.com/browse"><img src="netflix.png" alt="logo" /></a>
+  </div>
+  <ul class="nav">
+    <hr>
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="#">
+        <span class="menu-icon">
+          <i class="fa-solid fa-house"></i>
+        </span>
+        <span class="menu-title">Principal</span>
+      </a>
+    </li>
+    <li class="nav-item menu-items">
+      <a class="nav-link" data-toggle="collapse" href="#movies" aria-expanded="false" aria-controls="ui-basic">
+        <span class="menu-icon">
+          <i class="fa-solid fa-film"></i>
+        </span>
+        <span class="menu-title">Películas</span>
+        <i class="fa-solid fa-arrow-down ml-5"></i>
+      </a>
+      <div class="collapse" id="movies">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a class="nav-link" href="/view">Ver listado</a></li>
+          <li class="nav-item"><a class="nav-link" href="/add">Agregar película</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="/edit">Actualizar película</a></li> -->
+        </ul>
+      </div>
+    </li>
+  </ul>
+</nav>

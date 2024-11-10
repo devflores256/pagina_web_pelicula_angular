@@ -1,0 +1,85 @@
+<div class="container mt-3 ml-5" style="width: 100vw;">
+    <div class="card">
+        <div class="card-header">
+            Listado de Películas
+        </div>
+        <div class="card-body">
+            <!-- <app-form></app-form> -->
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left d-flex justify-content-between" type="button" data-toggle="collapse" data-target="#formulario" aria-expanded="false" aria-controls="collapseOne">
+                                Agregar nueva película <i class="fa-solid fa-square-plus mt-1"></i>
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="formulario" class="collapse" aria-labelledby="headingOne">
+                        <div class="card-body">
+                            <form autocomplete="off">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Título</label>
+                                            <input type="text" class="form-control" #titulo name="titulo" [(ngModel)]="cuadroTitulo">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Género</label>
+                                            <input type="text" class="form-control" #genero name="genero" [(ngModel)]="cuadroGenero">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Año de estreno</label>
+                                            <input type="number" class="form-control" #anio name="anio" [(ngModel)]="cuadroAnio">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Director</label>
+                                            <input type="text" class="form-control" #director name="director" [(ngModel)]="cuadroDirector">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Duración (En horas)</label>
+                                            <input type="number" class="form-control" #duracion name="duracion" [(ngModel)]="cuadroDuracion">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Clasificación</label>
+                                            <input type="text" class="form-control" #clasificacion name="clasificacion" [(ngModel)]="cuadroClasificacion">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Sinopsis</label>
+                                            <input type="text" class="form-control" #sinopsis name="sinopsis" [(ngModel)]="cuadroSinopsis">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-success btn-block mb-2" (click)="guardar_pelicula()">
+                                            <i class="fa-solid fa-floppy-disk"></i> Guardar Película
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <app-pelicula *ngFor="let pelicula of peliculas; let i = index" [peliculaLista]="pelicula" [indice]="i"></app-pelicula>
+        </div>
+    </div>
+</div>
