@@ -25,6 +25,25 @@ export class PeliculaComponent {
 
   constructor(private router: Router, private movieService: movieService, private helper: HelperServiceService) {}
 
+  formatDuration(duration: number){
+
+    // Convertimos el parametro recibido a "string"
+    const durationStr = duration.toString().padStart(4, '0');
+    
+    // Separamos la cadena y asignamos cada parte a una variable
+    const [hoursStr, minutesStr] = durationStr.split(":");
+    let hours = parseInt(hoursStr, 10);
+    let minutes = parseInt(minutesStr, 10);
+
+    // Verificamos que los resultados sean números
+    if (isNaN(hours) || isNaN(minutes)) {
+      return "Duración no válida";
+    }
+
+    // Retornamos las horas y minutos con el formato debido
+    return `${hours} h ${minutes} m`;
+  }
+
   eliminar_pelicula(id?:string): void {
 
     if (!id) {

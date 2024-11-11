@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { switchMap } from 'rxjs/operators';  
+import { interval } from 'rxjs';
 import { pelicula } from "../models/peliculas.models";
 import { HelperServiceService } from "./helper.service.service";
 import { ConnectionFirebaseServiceTsService } from "./connection-firebase.service.ts.service";
@@ -47,9 +49,14 @@ export class movieService {
     }
 
     // Método para obtener todos los datos de firebase y mandarlos al arreglo
-    obtener_peliculas() {
+    /* obtener_peliculas() {
         return this.conecction.cargar_pelicula();
-    }
+    } */
+    obtener_peliculas(){  
+        return interval(500).pipe(  
+            switchMap(() => this.conecction.cargar_pelicula())
+        );  
+    }  
     
     // Método par asignar los datos al arreglo
     set_pelicula(data: pelicula[]) {

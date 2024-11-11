@@ -5,7 +5,7 @@
             <a class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{indice+1}} | {{ peliculaLista.titulo }} ({{ peliculaLista.anio }})</h5>
-                    <small><b>Duración: </b> {{ peliculaLista.duracion }} minutos</small>
+                    <small><b>Duración: </b> {{ formatDuration(peliculaLista.duracion) }}</small>
                 </div>
                 <p class="mb-1"><b>Director:</b> {{ peliculaLista.director }}</p>
                 <p class="mb-1"><b>Género:</b> {{ peliculaLista.genero }}</p>

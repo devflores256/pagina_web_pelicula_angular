@@ -43,9 +43,12 @@ export class ConnectionFirebaseServiceTsService {
   }
 
   // Método para obtener todos los registros de las películas
-  cargar_pelicula() {
+  /* cargar_pelicula() {
     return this.httpClient.get(this.url)
-  }
+  } */
+  cargar_pelicula() {  
+    return this.httpClient.get(this.url);  
+  }  
 
 
 
