@@ -12,10 +12,10 @@
                 <p class="mb-1"><b>Clasificación:</b> {{ peliculaLista.clasificacion }}</p>
                 <small><b>Sinpsis:</b> {{ peliculaLista.sinopsis }}</small>
                 <div>
-                    <button class="btn btn-warning mb-3 mr-2" [routerLink]="['/edit',indice]">
+                    <button class="btn btn-warning mb-3 mr-2" [routerLink]="['/edit', peliculaLista.id]">
                         <i class="fa-solid fa-trash"></i> Editar
                     </button>
-                    <button class="btn btn-danger mb-3" (click)="eliminar_pelicula(indice)">
+                    <button class="btn btn-danger mb-3" (click)="eliminar_pelicula(peliculaLista.id)">
                         <i class="fa-solid fa-trash"></i> Eliminar
                     </button>
                 </div>

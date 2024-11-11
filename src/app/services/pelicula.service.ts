@@ -1,47 +1,55 @@
-import { Router } from "@angular/router";
-import { pelicula } from "../models/peliculas.models";
+
 import { Injectable } from '@angular/core';
+import { pelicula } from "../models/peliculas.models";
+import { ConnectionFirebaseServiceTsService } from "./connection-firebase.service.ts.service";
 
 @Injectable({providedIn:"root"})
 
 export class movieService {
 
-    constructor(private router: Router) {}
+    peliculas: pelicula[] = [];
 
-    peliculas: pelicula[] = [
-        new pelicula('The Dark Knigh','Acción',2008,'Christopher Nolan',152,'Batman lucha contra el Joker, un criminal brillante y caótico que pone a Gotham City en caos.','R'),
-        new pelicula('Toy Story','Animación',1995,'John Lasseter',81,'Los juguetes de Andy cobran vida cuando no hay humanos alrededor, y Woody, un vaquero de juguete, lidera el grupo.','R'),
-        new pelicula('Parasite','Suspenso',2019,'Bong Joon-ho',132,'Una familia pobre se infiltra en la vida de una familia rica, con consecuencias impredecibles.','R'),
-        new pelicula('The Matrix','Ciencia Ficción',1999,'Lana Wachowski',136,'Un hacker descubre que el mundo que lo rodea es una simulación y que es el elegido para liberarlo.','R')
-    ];
+    constructor(private conecction: ConnectionFirebaseServiceTsService) {}
 
+    // Mètodo para agregar el arreglo y mandarlos a la conexión con firebase
     agregar_pelicula_servicio(pelicula:pelicula) {
         alert("Película ingresada: " + pelicula.titulo);
         this.peliculas.push(pelicula);
-        console.log(this.peliculas);
-        this.router.navigate(['view']);
+        this.conecction.guardar_pelicula(pelicula);
     }
 
-    actualizar_pelicula_servicio(indice:number,pelicula:pelicula) {
-        let peliculaModificada = this.peliculas[indice];
+    // Método para obtener y actualizar el arreglo y mandarlos a la conexión con firebase
+    encontrar_pelicula(id: string): pelicula | undefined {  
+        return this.peliculas.find(p => p.id === id);  
+    }  
+    actualizar_pelicula_servicio(id:string, pelicula:pelicula) {
+        let peliculaModificada = this.peliculas.find(p => p.id === id); // Buscamos la posición del arreglo según su id
 
-        peliculaModificada.titulo = pelicula.titulo;
-        peliculaModificada.genero = pelicula.genero;
-        peliculaModificada.anio = pelicula.anio;
-        peliculaModificada.director = pelicula.director;
-        peliculaModificada.clasificacion = pelicula.clasificacion;
-        peliculaModificada.duracion = pelicula.duracion;
-        peliculaModificada.sinopsis = pelicula.sinopsis;
+        if (peliculaModificada) {  
+            peliculaModificada.titulo = pelicula.titulo;  
+            peliculaModificada.genero = pelicula.genero;  
+            peliculaModificada.anio = pelicula.anio;  
+            peliculaModificada.director = pelicula.director;  
+            peliculaModificada.clasificacion = pelicula.clasificacion;  
+            peliculaModificada.duracion = pelicula.duracion;  
+            peliculaModificada.sinopsis = pelicula.sinopsis;  
 
-        this.router.navigate(['view']);
+            this.conecction.actualizar_pelicula(id, peliculaModificada);  
+        }  
     }
 
-    encontrar_pelicula(indice: number){
-        let pelicula:pelicula = this.peliculas[indice];
-        return pelicula;
+    // Método para eliminar el registro del arreglo y mandarlo a la conexión con firebase
+    eliminar_pelicula_servicio(indice: string) {
+        this.conecction.eliminar_pelicula(indice);
     }
 
-    eliminar_pelicula_servicio(indice: number) {
-        this.peliculas.splice(indice,1)
+    // Método para obtener todos los datos de firebase y mandarlos al arreglo
+    obtener_peliculas() {
+        return this.conecction.cargar_pelicula();
+    }
+    
+    // Método par asignar los datos al arreglo
+    set_pelicula(data: pelicula[]) {
+        this.peliculas = data;
     }
 }

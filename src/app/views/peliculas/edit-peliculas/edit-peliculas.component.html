@@ -4,7 +4,7 @@
             Actualización de Películas
         </div>
         <div class="card-body">
-            <form (ngSubmit)="actualizar_pelicula()">
+            <form (ngSubmit)="editar_pelicula()">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -36,8 +36,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Duración (En minutos)</label>
-                            <input type="number" class="form-control" #duracion name="duracion" [(ngModel)]="cuadroDuracion">
+                            <label for="exampleInputEmail1">Duración</label>
+                            <input type="time" class="form-control" #duracion name="duracion" [(ngModel)]="cuadroDuracion">
                         </div>
                     </div>
                     <div class="col-md-6">

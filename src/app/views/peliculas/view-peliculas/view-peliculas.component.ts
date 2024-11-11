@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { movieService } from '../../../services/pelicula.service';
 import { pelicula } from "../../../models/peliculas.models";
 import { PeliculaComponent } from './pelicula/pelicula.component';
-// import { FormComponent } from './form/form.component';
 
 @Component({
   selector: 'app-view-peliculas',
@@ -27,13 +26,35 @@ export class ViewPeliculasComponent implements OnInit {
   cuadroClasificacion: string = "";
   cuadroSinopsis: string = "";
 
-  constructor(private movieService: movieService) {
-    // console.log(this.movieService)
-  }
+  constructor(private movieService: movieService) {}
 
   ngOnInit(): void {
-    this.peliculas = this.movieService.peliculas;
-    // console.log(this.movieService)
+    this.movieService.obtener_peliculas().subscribe(
+      data => {
+        console.log(data);
+        if (data) {
+          this.peliculas = Object.entries(data).map(([id, peliculaData]) => 
+            new pelicula(
+              peliculaData.titulo,
+              peliculaData.genero,
+              peliculaData.anio,
+              peliculaData.director,
+              peliculaData.duracion,
+              peliculaData.sinopsis,
+              peliculaData.clasificacion,
+              id
+            )
+          );
+        } else {
+          this.peliculas = [];
+        }
+        this.movieService.set_pelicula(this.peliculas);
+      },  
+      error => {  
+        console.error('Error al obtener películas', error);  
+        this.peliculas = [];
+      } 
+    )
   }
 
   guardar_pelicula() {

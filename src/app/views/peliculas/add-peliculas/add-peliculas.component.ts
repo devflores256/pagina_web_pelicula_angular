@@ -55,7 +55,6 @@ export class AddPeliculasComponent implements OnInit {
       let miPelicula = new pelicula(this.cuadroTitulo, this.cuadroGenero, this.cuadroAnio, this.cuadroDirector, this.cuadroDuracion, this.cuadroClasificacion, this.cuadroSinopsis);
   
       this.movieService.agregar_pelicula_servicio(miPelicula);
-      // this.volverListado();
   
       this.cuadroTitulo = "";
       this.cuadroGenero = "";
@@ -64,8 +63,11 @@ export class AddPeliculasComponent implements OnInit {
       this.cuadroDuracion = 0;
       this.cuadroClasificacion = "";
       this.cuadroSinopsis = "";
+
+      setTimeout(() => {  
+          this.volverListado();  
+      }, 500);  
   
-      // console.log(this.movieService);
     }
 
   }

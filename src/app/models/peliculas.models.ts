@@ -1,4 +1,5 @@
 export class pelicula {
+    id?: string;
     titulo: string = "";
     genero: string = "";
     anio: number = 0;
@@ -14,7 +15,8 @@ export class pelicula {
         director: string,
         duracion: number,
         sinopsis: string,
-        clasificacion: string
+        clasificacion: string,
+        id?: string
     ){
 
         this.titulo = titulo;
@@ -24,5 +26,6 @@ export class pelicula {
         this.duracion = duracion;
         this.sinopsis = sinopsis;
         this.clasificacion = clasificacion;
+        this.id = id;
     }
 }
