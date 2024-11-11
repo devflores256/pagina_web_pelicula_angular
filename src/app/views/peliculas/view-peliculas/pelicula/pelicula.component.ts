@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
+import { HelperServiceService } from '../../../../services/helper.service.service';
 import { pelicula } from '../../../../models/peliculas.models';
 import { movieService } from '../../../../services/pelicula.service';
 
@@ -21,18 +23,32 @@ export class PeliculaComponent {
     this.router.navigate(['/view']);
   }
 
-  constructor(private router: Router, private movieService: movieService) {}
+  constructor(private router: Router, private movieService: movieService, private helper: HelperServiceService) {}
 
   eliminar_pelicula(id?:string): void {
 
     if (!id) {
-      console.warn("No se fue posible encontrar el id de la película")
+      this.helper.sweetalert('¡Un momento!','No se fue posible encontrar el id de la película','info');
     } else {
-      this.movieService.eliminar_pelicula_servicio(id);
-      
-      setTimeout(() => {  
-          this.volverListado();  
-      }, 500);  
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Esta acción no podrá revertirse!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, borrar!",
+        cancelButtonText: "Cancelar"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          
+          this.movieService.eliminar_pelicula_servicio(id);
+          
+          setTimeout(() => {  
+              this.volverListado();  
+          }, 1000);  
+        }
+      });
     }
 
   }

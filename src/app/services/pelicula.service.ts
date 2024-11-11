@@ -1,6 +1,6 @@
-
 import { Injectable } from '@angular/core';
 import { pelicula } from "../models/peliculas.models";
+import { HelperServiceService } from "./helper.service.service";
 import { ConnectionFirebaseServiceTsService } from "./connection-firebase.service.ts.service";
 
 @Injectable({providedIn:"root"})
@@ -9,13 +9,13 @@ export class movieService {
 
     peliculas: pelicula[] = [];
 
-    constructor(private conecction: ConnectionFirebaseServiceTsService) {}
+    constructor(private conecction: ConnectionFirebaseServiceTsService, private helper: HelperServiceService) {}
 
     // Mètodo para agregar el arreglo y mandarlos a la conexión con firebase
     agregar_pelicula_servicio(pelicula:pelicula) {
-        alert("Película ingresada: " + pelicula.titulo);
         this.peliculas.push(pelicula);
         this.conecction.guardar_pelicula(pelicula);
+        this.helper.sweetalert('¡Operación exitosa!','Se ha ingresado una nueva película correctamente.','success');
     }
 
     // Método para obtener y actualizar el arreglo y mandarlos a la conexión con firebase
@@ -35,12 +35,15 @@ export class movieService {
             peliculaModificada.sinopsis = pelicula.sinopsis;  
 
             this.conecction.actualizar_pelicula(id, peliculaModificada);  
+
+            this.helper.sweetalert('¡Operación exitosa!','Se ha actualizado la película correctamente.','success');
         }  
     }
 
     // Método para eliminar el registro del arreglo y mandarlo a la conexión con firebase
     eliminar_pelicula_servicio(indice: string) {
         this.conecction.eliminar_pelicula(indice);
+        this.helper.sweetalert('¡Operación exitosa!','Se ha eliminado la película correctamente.','success');
     }
 
     // Método para obtener todos los datos de firebase y mandarlos al arreglo

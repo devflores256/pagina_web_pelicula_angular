@@ -19612,17 +19612,17 @@
     -webkit-flex-direction: column;
     flex-direction: column;
     border-radius: 10px; }
-    .swal2-modal .swal2-title {
+    /* .swal2-modal .swal2-title {
       font-size: 25px;
       line-height: 1;
       font-weight: 500;
       color: #ffffff;
       font-weight: initial;
-      margin-bottom: 0; }
-    .swal2-modal .swal2-icon,
+      margin-bottom: 0; } */
+    /* .swal2-modal .swal2-icon,
     .swal2-modal .swal2-success-ring {
       margin-top: 0;
-      margin-bottom: 42px; }
+      margin-bottom: 42px; } */
     .swal2-modal .swal2-buttonswrapper {
       margin-top: 0;
       padding: 0; }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { movieService } from '../../../services/pelicula.service';
+import { HelperServiceService } from '../../../services/helper.service.service';
 import { pelicula } from '../../../models/peliculas.models';
 
 @Component({
@@ -28,7 +29,7 @@ export class AddPeliculasComponent implements OnInit {
   cuadroClasificacion: string = "";
   cuadroSinopsis: string = "";
 
-  constructor(private router: Router, private movieService: movieService) {}
+  constructor(private router: Router, private movieService: movieService, private helper: HelperServiceService) {}
   
   ngOnInit(): void {
     this.peliculas = this.movieService.peliculas;
@@ -37,19 +38,19 @@ export class AddPeliculasComponent implements OnInit {
   guardar_pelicula() {
 
     if (this.cuadroTitulo == "") {
-      alert("Debe llenar el Título");
+      this.helper.sweetalert('¡Un momento!','Debes ingresar el Título de la película','info');
     } else if (this.cuadroGenero == "") {
-      alert("Debe llenar el Género");
+      this.helper.sweetalert('¡Un momento!','Debes ingresar el Género de la película','info');
     } else if (this.cuadroAnio == 0) {
-      alert("Debe llenar el Año");
+      this.helper.sweetalert('¡Un momento!','Debes ingresar el Año de la película','info');
     } else if (this.cuadroDirector == "") {
-      alert("Debe llenar el Director");
+      this.helper.sweetalert('¡Un momento!','Debes ingresar el Director de la película','info');
     } else if (this.cuadroDuracion == 0) {
-      alert("Debe llenar la Duración");
+      this.helper.sweetalert('¡Un momento!','Debes ingresar la Duración de la película','info');
     } else if (this.cuadroSinopsis == "") {
-      alert("Debe llenar la Sinopsis");
+      this.helper.sweetalert('¡Un momento!','Debes ingresar la Sinopsis de la película','info');
     } else if (this.cuadroClasificacion == "") {
-      alert("Debe llenar la Clasficicación");
+      this.helper.sweetalert('¡Un momento!','Debes ingresar la Clasificación de la película','info');
     } else {
 
       let miPelicula = new pelicula(this.cuadroTitulo, this.cuadroGenero, this.cuadroAnio, this.cuadroDirector, this.cuadroDuracion, this.cuadroClasificacion, this.cuadroSinopsis);

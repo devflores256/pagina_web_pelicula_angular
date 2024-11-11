@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { pelicula } from '../../../models/peliculas.models';
 import { movieService } from '../../../services/pelicula.service';
+import { HelperServiceService } from '../../../services/helper.service.service';
 
 @Component({
   selector: 'app-edit-peliculas',
@@ -14,7 +15,7 @@ import { movieService } from '../../../services/pelicula.service';
 })
 export class EditPeliculasComponent implements OnInit {
 
-  constructor(private router: Router, private movieService: movieService, private route:ActivatedRoute) {}
+  constructor(private router: Router, private movieService: movieService, private route:ActivatedRoute, private helper: HelperServiceService) {}
 
   titulo = 'Listado de Empleados';
   indice:string;
@@ -49,12 +50,30 @@ export class EditPeliculasComponent implements OnInit {
   }
 
   editar_pelicula(){
-    let miPelicula = new pelicula(this.cuadroTitulo, this.cuadroGenero, this.cuadroAnio, this.cuadroDirector, this.cuadroDuracion, this.cuadroSinopsis, this.cuadroClasificacion);  
-    this.movieService.actualizar_pelicula_servicio(this.indice, miPelicula);
-    
-    setTimeout(() => {  
-        this.volverListado();  
-    }, 500);  
+
+    if (this.cuadroTitulo == "") {
+      this.helper.sweetalert('¡Un momento!','Debes ingresar el Título de la película','info');
+    } else if (this.cuadroGenero == "") {
+      this.helper.sweetalert('¡Un momento!','Debes ingresar el Género de la película','info');
+    } else if (this.cuadroAnio == 0) {
+      this.helper.sweetalert('¡Un momento!','Debes ingresar el Año de la película','info');
+    } else if (this.cuadroDirector == "") {
+      this.helper.sweetalert('¡Un momento!','Debes ingresar el Director de la película','info');
+    } else if (this.cuadroDuracion == 0) {
+      this.helper.sweetalert('¡Un momento!','Debes ingresar la Duración de la película','info');
+    } else if (this.cuadroSinopsis == "") {
+      this.helper.sweetalert('¡Un momento!','Debes ingresar la Sinopsis de la película','info');
+    } else if (this.cuadroClasificacion == "") {
+      this.helper.sweetalert('¡Un momento!','Debes ingresar la Clasificación de la película','info');
+    } else {
+
+      let miPelicula = new pelicula(this.cuadroTitulo, this.cuadroGenero, this.cuadroAnio, this.cuadroDirector, this.cuadroDuracion, this.cuadroSinopsis, this.cuadroClasificacion);  
+      this.movieService.actualizar_pelicula_servicio(this.indice, miPelicula);
+      
+      setTimeout(() => {  
+          this.volverListado();  
+      }, 1000);  
+    }
   }
 
 }

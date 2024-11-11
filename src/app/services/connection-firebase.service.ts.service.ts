@@ -16,7 +16,7 @@ export class ConnectionFirebaseServiceTsService {
     this.httpClient.post(this.url,pelicula).subscribe(
       (response: any) => {  
         pelicula.id = response.name; // El id generado para el registro lo asignamos a nuestro arreglo en el modelo
-        console.log('Se han guardado los cambios en firebase', pelicula);  
+        console.log('Se han guardado los cambios en firebase', pelicula); 
       },  
       error => console.log('Error: ' + error)
     );
