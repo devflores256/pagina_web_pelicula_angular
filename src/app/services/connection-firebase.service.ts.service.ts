@@ -10,14 +10,15 @@ export class ConnectionFirebaseServiceTsService {
 
   constructor(private httpClient: HttpClient, private loginService: LoginService) { }
 
-  url = 'https://cristian-flores-ing-default-rtdb.firebaseio.com/navidad.json'
-
+  private _baseUrl = 'https://cristian-flores-ing-default-rtdb.firebaseio.com/navidad.json';
+  private _baseUrlChanges = 'https://cristian-flores-ing-default-rtdb.firebaseio.com/navidad/';
+  
   // Método para guardar la película
   guardar_pelicula(pelicula: pelicula) {
-    const token = this.loginService.getIdToken();
-    this.httpClient.post(this.url + '?auth=' + token,pelicula).subscribe(
+    let insertar_url = this._baseUrl + "?auth=" + this.getToken();
+    this.httpClient.post(insertar_url,pelicula).subscribe(
       (response: any) => {
-        pelicula.id = response.name; // El id generado para el registro lo asignamos a nuestro arreglo en el modelo
+        this.assignId(pelicula, response);
         console.log('Se han guardado los cambios en firebase', pelicula); 
       },  
       error => console.log('Error: ' + error)
@@ -26,10 +27,9 @@ export class ConnectionFirebaseServiceTsService {
 
   // Método para actualizar la película
   actualizar_pelicula(indice: string, pelicula: pelicula) {
-    const token = this.loginService.getIdToken();
-    let nueva_url = "https://cristian-flores-ing-default-rtdb.firebaseio.com/navidad/" + indice + ".json?auth=" + token;
+    let actualizar_url = this._baseUrlChanges + indice + ".json?auth=" + this.getToken();
 
-    this.httpClient.put(nueva_url,pelicula).subscribe(
+    this.httpClient.put(actualizar_url,pelicula).subscribe(
       response => console.log("Se ha actualizado el empleado " + response),
       error => console.log("Error: " + error)
     )
@@ -37,25 +37,34 @@ export class ConnectionFirebaseServiceTsService {
 
   // Método para eliminar una película
   eliminar_pelicula(indice:string) {
-    const token = this.loginService.getIdToken();
-    let url = "https://cristian-flores-ing-default-rtdb.firebaseio.com/navidad/" + indice + ".json?auth=" + token;
+    let eliminar_url = this._baseUrlChanges + indice + ".json?auth=" + this.getToken();
 
-    this.httpClient.delete(url).subscribe(
+    this.httpClient.delete(eliminar_url).subscribe(
         response => console.log("Se ha eliminado la película " + response),
         error => console.log("Error: " + error)
     );
   }
 
   // Método para obtener todos los registros de las películas
-  /* cargar_pelicula() {
-    return this.httpClient.get(this.url)
-  } */
-
   cargar_pelicula() {  
-    const token = this.loginService.getIdToken();
-    return this.httpClient.get(this.url + '?auth=' + token);  
+    let cargar_url = this._baseUrl + "?auth=" + this.getToken();
+    return this.httpClient.get(cargar_url);  
   }  
 
+  // ==========================================
+  // Método para obtener el token
+  private getToken() {
+    return this.loginService.getIdToken();
+  }
 
+  // ==========================================
+  // Método para asignar el id al agregar el registro
+  private assignId(pelicula: pelicula, response: {name: string}) {
+    if (response && response.name) {
+      pelicula.id = response.name;
+    } else {
+      console.error('No fue posible asignar el id al arreglo local');
+    }
+  }
 
 }

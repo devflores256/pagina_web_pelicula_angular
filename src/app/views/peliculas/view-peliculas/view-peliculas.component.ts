@@ -35,7 +35,7 @@ export class ViewPeliculasComponent implements OnInit {
   ngOnInit(): void {
     this.movieService.obtener_peliculas().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         if (data) {
           this.peliculas = Object.entries(data).map(([id, peliculaData]) => 
             new pelicula(
@@ -78,7 +78,7 @@ export class ViewPeliculasComponent implements OnInit {
       this.helper.sweetalert('¡Un momento!','Debes ingresar la Clasificación de la película','info');
     } else {
 
-      let miPelicula = new pelicula(this.cuadroTitulo, this.cuadroGenero, this.cuadroAnio, this.cuadroDirector, this.cuadroDuracion, this.cuadroClasificacion, this.cuadroSinopsis);
+      let miPelicula = new pelicula(this.cuadroTitulo, this.cuadroGenero, this.cuadroAnio, this.cuadroDirector, this.cuadroDuracion, this.cuadroSinopsis, this.cuadroClasificacion);
   
       this.movieService.agregar_pelicula_servicio(miPelicula);
   

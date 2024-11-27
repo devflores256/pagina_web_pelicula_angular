@@ -53,7 +53,7 @@ export class AddPeliculasComponent implements OnInit {
       this.helper.sweetalert('¡Un momento!','Debes ingresar la Clasificación de la película','info');
     } else {
 
-      let miPelicula = new pelicula(this.cuadroTitulo, this.cuadroGenero, this.cuadroAnio, this.cuadroDirector, this.cuadroDuracion, this.cuadroClasificacion, this.cuadroSinopsis);
+      let miPelicula = new pelicula(this.cuadroTitulo, this.cuadroGenero, this.cuadroAnio, this.cuadroDirector, this.cuadroDuracion, this.cuadroSinopsis, this.cuadroClasificacion);
   
       this.movieService.agregar_pelicula_servicio(miPelicula);
   

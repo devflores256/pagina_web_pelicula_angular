@@ -32,9 +32,9 @@ export class movieService {
             peliculaModificada.genero = pelicula.genero;  
             peliculaModificada.anio = pelicula.anio;  
             peliculaModificada.director = pelicula.director;  
-            peliculaModificada.clasificacion = pelicula.clasificacion;  
-            peliculaModificada.duracion = pelicula.duracion;  
-            peliculaModificada.sinopsis = pelicula.sinopsis;  
+            peliculaModificada.duracion = pelicula.duracion;
+            peliculaModificada.sinopsis = pelicula.sinopsis;
+            peliculaModificada.clasificacion = pelicula.clasificacion;
 
             this.conecction.actualizar_pelicula(id, peliculaModificada);  
 
