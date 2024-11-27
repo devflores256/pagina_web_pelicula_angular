@@ -6,11 +6,13 @@ import { movieService } from '../../../services/pelicula.service';
 import { HelperServiceService } from '../../../services/helper.service.service';
 import { pelicula } from "../../../models/peliculas.models";
 import { PeliculaComponent } from './pelicula/pelicula.component';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-view-peliculas',
   standalone: true,
   imports: [CommonModule,PeliculaComponent,FormsModule],
+  providers: [LoginService],
   templateUrl: './view-peliculas.component.html',
   styleUrl: './view-peliculas.component.css'
 })
