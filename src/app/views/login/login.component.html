@@ -1,0 +1,28 @@
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="movie-icon.png" alt=""/>
+            <h3>¡Bienvenido!</h3>
+            <p>Estás a punto de explorar la mejor app de películas</p>
+        </div>
+        <div class="col-md-9 register-right">
+            <h3 class="register-heading">Ingresa tus credenciales</h3>
+            <form #miFormulario="ngForm" (ngSubmit)="login(miFormulario)">
+                <div class="row register-form">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Correo Electrónico" name="email" ngModel/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Contraseña" name="password" ngModel/>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="submit" class="btnRegister btn-block" value="Iniciar Sesión"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>                            

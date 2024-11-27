@@ -1,4 +1,16 @@
-<div class="container-scroller">
+<!-- <div class="container-scroller">
     <app-sidebar></app-sidebar>
     <router-outlet></router-outlet>
-</div>
+</div> -->
+
+
+<ng-container *ngIf="router.url === '/login'; else home">
+    <router-outlet></router-outlet>
+</ng-container>
+
+<ng-template #home>
+    <div class="container-scroller">
+        <app-sidebar></app-sidebar>
+        <router-outlet></router-outlet>
+    </div>
+</ng-template>

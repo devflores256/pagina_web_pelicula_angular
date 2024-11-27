@@ -15688,11 +15688,11 @@
     font-size: 1rem; }
   
   /* Miscellanoeous */
-  body,
+  /* body,
   html {
     overflow-x: hidden;
     padding-right: 0 !important;
-    background-color: #191c24; }
+    background-color: #191c24; } */
   
   *:-moz-full-screen,
   *:-webkit-full-screen,
@@ -20598,6 +20598,7 @@
   
   /* Sidebar */
   .sidebar {
+    /* position: fixed; */
     min-height: 100%;
     background: #191c24;
     font-weight: normal;
